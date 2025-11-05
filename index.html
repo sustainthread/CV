@@ -28,6 +28,42 @@
             --color-accent: #00bfff; /* Bright Sky Blue for data/tech accent */
         }
 
+        /* Navigation Styles */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--color-dark);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        .main-nav li {
+            margin: 0;
+        }
+
+        .main-nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            background-color: var(--color-primary);
+            color: var(--color-accent);
+        }
+
         /* Header Section - High Contrast & Crisp */
         header {
             background-color: var(--color-dark); /* Deep Charcoal Background */
@@ -129,6 +165,12 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         section h2 {
@@ -371,6 +413,26 @@
         .contact-info a:hover {
             text-decoration: underline;
         }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            color: var(--color-accent);
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 16px;
+            border: 1px solid var(--color-accent);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-dark);
+        }
         
         /* Back to Top Button */
         #back-to-top {
@@ -410,6 +472,51 @@
             color: #ccc;
         }
 
+        /* Print Styles */
+        @media print {
+            .main-nav, .cta-buttons, #back-to-top, footer {
+                display: none !important;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin: 15px 0;
+                page-break-inside: avoid;
+            }
+            
+            .container {
+                margin: 0;
+                max-width: 100%;
+            }
+            
+            a {
+                color: black;
+                text-decoration: underline;
+            }
+            
+            header {
+                background-color: white !important;
+                color: black;
+                padding: 20px 0;
+            }
+            
+            header h1 {
+                color: black;
+            }
+            
+            header::after {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
@@ -435,11 +542,44 @@
             .cta-button {
                 display: block;
                 margin: 10px auto;
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 80px 15px 40px 15px;
+            }
+            
+            .cta-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#summary">Summary</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#work">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
     <!-- Header Section -->
     <header>
         <h1>Vishal Londhe</h1>
@@ -447,8 +587,8 @@
         <p class="tagline">Proven ability to lead multi-cultural teams and deliver substantial revenue growth (30%+ during the pandemic) through strategic alliances and innovation.</p>
         <div class="cta-buttons">
             <a href="https://calendly.com/londhe-vishalps/30min" target="_blank" class="cta-button book-call">Book 15 Min Call</a>
-            <button class="cta-button" onclick="document.getElementById('work' ).scrollIntoView({behavior: 'smooth'});">View Portfolio & Achievements</button>
-            <button class="cta-button" onclick="document.getElementById('contact').scrollToView({behavior: 'smooth'});">Contact Me</button>
+            <button class="cta-button" onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'});">View Portfolio & Achievements</button>
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Contact Me</button>
         </div>
     </header>
 
@@ -690,6 +830,13 @@
             <p><strong>Location:</strong> Madrid, Spain, 28006</p>
             <p><strong>Email:</strong> <a href="mailto:harborseal337@angelrnook.com">harborseal337@angelrnook.com</a></p>
         </div>
+        
+        <!-- Social Media Links - Replace # with your actual LinkedIn URL -->
+        <div class="social-links">
+            <a href="https://linkedin.com/in/vishallondhe" target="_blank">LinkedIn</a>
+            <!-- Add more social media links as needed -->
+        </div>
+        
         <p class="visitor-counter">
             Visitor Count: <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Flondhevishalps.github.io%2FCV%2F&count_bg=%2300BFFF&title_bg=%23004D99&icon=&icon_color=%23E7E7E7&title=VISITS&edge_flat=false" alt="Visitor Count">
         </p>
@@ -701,7 +848,7 @@
 
     <script>
         // Contact Form Functionality
-        function handleContactForm(event ) {
+        function handleContactForm(event) {
             event.preventDefault();
 
             // Get form values
@@ -709,16 +856,37 @@
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
 
-            // Validate fields
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
+            // Validate fields with better feedback
+            if (!name) {
+                alert('Please enter your name.');
+                document.getElementById('name').focus();
+                return;
+            }
+            
+            if (!email) {
+                alert('Please enter your email address.');
+                document.getElementById('email').focus();
+                return;
+            }
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                document.getElementById('email').focus();
+                return;
+            }
+            
+            if (!message) {
+                alert('Please enter your message.');
+                document.getElementById('message').focus();
                 return;
             }
 
             // Create mailto link with form data
-            const subject = encodeURIComponent('New form submitted CV website');
+            const subject = encodeURIComponent('Contact from CV Website');
             const body = encodeURIComponent(
-                `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n${message}`
+                `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
             );
 
             // Open default email client
@@ -726,7 +894,7 @@
 
             // Reset form
             document.querySelector('.contact-form').reset();
-            alert('Thank you for reaching out! Your default email client will open to send the message.');
+            alert('Thank you for your message! Your email client will open to send the message.');
         }
 
         // Back to Top Button Functionality
